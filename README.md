@@ -1,5 +1,5 @@
-# javascript-cheatsheet
-Cheatsheet on Javascript
+# Javascript-cheatsheet
+Cheatsheet on Javascript language, programming paradigms, tips&tricks, etc.
 
 ## OOP vs Functional programming
 Object Oriented Programming - programming paradigm that focuses on three aspects
