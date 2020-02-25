@@ -25,8 +25,8 @@ Promise is an object that is a placeholder for the resulting value of an asynchr
   <li> rejected: meaning that the operation failed
 </ul>
 To understand Async/Await better you must understand <a href="https://medium.com/@bluepnume/learn-about-promises-before-you-start-using-async-await-eb148164a9c8"> promises.</a>
-The reason you want to want to use Async/Await instead of Promises is to avoid Callback-hell.
-<a href="https://getstream.io/blog/javascript-promises-and-why-async-await-wins-the-battle/#callback-hell">1</a>
+The reason you want to want to use Async/Await instead of Promises is to avoid
+<a href="https://getstream.io/blog/javascript-promises-and-why-async-await-wins-the-battle/#callback-hell">Callback-hell.</a>
 
 ```javascript
 function getUsers(userId) {
@@ -75,7 +75,9 @@ function getUsers(userId) {
 		});
 }
 ```
-Instead you can use Async/Await
+Instead you can use 
+<a href='https://blog.logrocket.com/promise-chaining-is-dead-long-live-async-await-445897870abc/'>Async/Await</a>.
+ Code is simplified and reduced significantly. Also there is no need to chain promises to make infinite callback loops.
 ```javascript
 async function getUsers(users) {
 	try {
@@ -91,11 +93,10 @@ async function getUsers(users) {
 Await must be used within functions that are declared with async in front. ie)
 ```javascript
 async function makeCoffee() {
-  let promiseToMakeCoffee = new Promise((resolve,reject) => {
-    if (tooLazy === true) {
-      return reject('Let me sleep some more');
-    } else {
-      resolve('MORNING ZOMBIE. NEED COFFEE');
+    try {
+    	let cupOfMojo = await promiseToMakeCoffee;
+    } catch(err) {
+    	console.log('Let me sleep more Zzzzz');
     }
   }
   
@@ -107,6 +108,6 @@ async function makeCoffee() {
   <li> Async/Await reduces the amount of code and cleans it up without complicated, nested promises
   <li> Can use error handling with try/catch instead of in each promise
   <li> Error stacks shows exact place instead of ambiguous errors in Promises loops
-  <li> Avoid Callback-hell :anguished:
+  <li> Avoid Callback-hell (Not fun :sob: )
 </ol>
 
