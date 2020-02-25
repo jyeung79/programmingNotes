@@ -17,5 +17,96 @@ Object Oriented Programming - programming paradigm that focuses on three aspects
   <li> Immutable data
 </ol>
 
+### Promises vs Async/Await
+Promise is an object that is a placeholder for the resulting value of an asynchronous operation. A promise is in one of these states:
+<ul>
+  <li> pending: initial state neither fulfilled or rejected
+  <li> fulfilled: operation completed successfully
+  <li> rejected: meaning that the operation failed
+</ul>
+To understand Async/Await better you must understand <a href="https://medium.com/@bluepnume/learn-about-promises-before-you-start-using-async-await-eb148164a9c8"> promises.</a>
+The reason you want to want to use Async/Await instead of Promises is to avoid Callback-hell.
+<a href="https://getstream.io/blog/javascript-promises-and-why-async-await-wins-the-battle/#callback-hell">1</a>
 
+```javascript
+function getUsers(userId) {
+	axios
+		.get(`/users/userId=${users[0]}`)
+		.then(res => {
+			// save the response for user 1
+			response.push(res);
+
+			axios
+				.get(`/users/userId=${users[1]}`)
+				.then(res => {
+					// save the response for user 2
+					response.push(res);
+
+					axios
+						.get(`/users/userId=${users[2]}`)
+						.then(res => {
+							// save the response for user 3
+							response.push(2);
+
+							axios
+								.get(`/users/userId=${users[3]}`)
+								.then(res => {
+									// save the response for user 4
+									response.push(res);
+								})
+								.catch(err => {
+									// handle error
+									console.log(err);
+								});
+						})
+						.catch(err => {
+							// handle error
+							console.log(err);
+						});
+				})
+				.catch(err => {
+					// handle error
+					console.log(err);
+				});
+		})
+		.catch(err => {
+			// handle error
+			console.log(err);
+		});
+}
+```
+Instead you can use Async/Await
+```javascript
+async function getUsers(users) {
+	try {
+		response[0] = await axios.get(`/users/userId=${users[0]}`);
+		response[1] = await axios.get(`/users/userId=${users[1]}`);
+		response[2] = await axios.get(`/users/userId=${users[2]}`);
+		response[3] = await axios.get(`/users/userId=${users[3]}`);
+	} catch (err) {
+		console.log(err);
+	}
+}
+```
+Await must be used within functions that are declared with async in front. ie)
+```javascript
+async function makeCoffee() {
+  let promiseToMakeCoffee = new Promise((resolve,reject) => {
+    if (tooLazy === true) {
+      return reject('Let me sleep some more');
+    } else {
+      resolve('MORNING ZOMBIE. NEED COFFEE');
+    }
+  }
   
+  let result = await promiseToMakeCoffee;
+  console.log(result);
+}
+```
+<ol>
+  <li> Async/Await reduces the amount of code and cleans it up without complicated, nested promises
+  <li> Can use error handling with try/catch instead of in each promise
+  <li> Error stacks shows exact place instead of ambiguous errors in Promises loops
+  <li> Avoid Callback-hell :anguished:
+</ol>
+
