@@ -111,7 +111,7 @@ async function makeCoffee() {
   <li> Avoid Callback-hell (Not fun :sob: )
 </ol>
 
-### Partials a& EJS
+### Partials & EJS
 EJS is a templating language that allows you to generate HTML markup with Javascript. You incorporate template tags into the html text.
 
 ```html
@@ -154,3 +154,10 @@ However it will be stored as follows in the DB.
 &lt;script&gt;<br/>        alert(&quot;Welcome&quot;);<br/>&lt;/script&gt;
 ```
 As such, the browser will display the previous text and so will not execute it.
+
+### TOOLS
+<ul>
+	<li> browsersync - one of the coolest nodejs software that I've ever used. It refreshes the browser each time the files specified are saved. ie) folder 'views', 'css/*.css" and etc.
+```
+browser-sync start --proxy 'localhost:3000' --files 'views'
+```
