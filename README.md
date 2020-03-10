@@ -1,5 +1,26 @@
 # Javascript-cheatsheet
-Cheatsheet on Javascript language, programming paradigms, tips&tricks, etc.
+Cheatsheet on Javascript language, programming paradigms, tips&tricks, etc. 
+
+Javascript is an interpreted language so it is interpreted line-by-line at run-time. Many browsers nowadays have Just-In-Time (JIT) compiliation which compiles Javascript into executable bytecode. This contrasts to compiled language such as C++, Java and Rust which must be compiled to machine code first before it's run.
+
+## Client-side vs Server-side
+Javascript is a high-level programming language that focuses on running client-side code on the web browser. Client-side means that the code runs through the browser on the client or user's device when they open the website or such. This contrast to server-side which means that the action takes place on the web server instead of a user's computer.
+
+ Javascript can do the following on the client-side such as.
+<ol>
+	<li> <strong>Render</strong> - Change the display or view on the browser
+	<li> <strong>Post</strong> - Send data to a server
+	<li> <strong>Get</strong> - Fetch more data from the server 
+</ol>
+However, with the advent of NodeJS, JS can be written on the server-side which means that it can now
+<ol>
+	<li> Write to APIs
+	<li> Talk to Databases
+	<li> Talk to Servers
+</ol>
+
+### Front-End Frameworks
+Front-end frameworks such as React, Angular and Vue enable client-side code to be easier and maintainable. There are strengths and caveats to each of the frameworks depending on usecases, project complexity and size etc.
 
 ## OOP vs Functional programming
 Object Oriented Programming - programming paradigm that focuses on three aspects
@@ -17,12 +38,40 @@ Object Oriented Programming - programming paradigm that focuses on three aspects
   <li> Immutable data
 </ol>
 
+### Javascript Data Types
+Javascript is a loosely typed or dynamic language. This means that variables are not directly declared it's typing compared to staticly typed languages such as C++. However, Typescript address this issues.
+
+Data Types are split into two categories: Primitives or single celled data types and Objects or a group of data. Primitives are immmutable so variables can only be reassigned data.
+Primitives include
+<ol>
+  <li> <strong>Boolean</strong> - true or false / 1 or 0
+  <li> <strong>Null</strong> - user-assigned data type that says data has no value
+  <li> <strong>Undefined</strong> - no datatype has been assigned to the variable or data is empty
+  <li> <strong>Number</strong> - JS has number type as float data-types. This includes +/- infinity and NaN. BigInt can represent intergers beyond the safe integer limit for Nubmers with arbitrary preision. 
+  <li> <strong>String</strong> - sequence of characters with indices
+  <li> <strong>Symbol</strong> - unique and immutable primitive type and can be used as a key for an Object
+</ol>
+Objects include Arrays and Objects or commonly known as Hash Tables. 
+Arrays are instatiated using [] and Objects are declared using {}.
+Each array value has an index and a value. Each object has a key and a value.
+
+```javascript
+const fruits = ['bananas', 'tomatoes', 'apples', 1243.5545, null, true]; // Arrays can hold different primitives and object types
+let trivia = {basketball:'Michael Jordan', hockey:'Wayne Gretzky', football:{ 1:45, 5:twenty, 8:566 running: function() } }; // Have objects nested into objects
+```
+Declare your variables with either const or let. Var can cause variables to leek out of it's block scope into outer scope. This can cause unpredictable and undesirable behavior.
+```javascript
+var i = 'happy'; // Don't use. Value escapes out of block scope. Deprecated use
+const j = 12345; // Used to declare a variable and assign a value once. Cannot reassign new data
+let k = []; // Declare a variable with reassignable values.
+```
+
 ### Promises vs Async/Await
 Promise is an object that is a placeholder for the resulting value of an asynchronous operation. A promise is in one of these states:
 <ul>
-  <li> pending: initial state neither fulfilled or rejected
-  <li> fulfilled: operation completed successfully
-  <li> rejected: meaning that the operation failed
+  <li> Pending: initial state neither fulfilled or rejected
+  <li> Fulfilled: operation completed successfully
+  <li> Rejected: meaning that the operation failed
 </ul>
 To understand Async/Await better you must understand <a href="https://medium.com/@bluepnume/learn-about-promises-before-you-start-using-async-await-eb148164a9c8"> promises.</a>
 The reason you want to want to use Async/Await instead of Promises is to avoid
@@ -75,9 +124,11 @@ function getUsers(userId) {
 		});
 }
 ```
+
 Instead you can use 
 <a href='https://blog.logrocket.com/promise-chaining-is-dead-long-live-async-await-445897870abc/'>Async/Await</a>.
  Code is simplified and reduced significantly. Also there is no need to chain promises to make infinite callback loops.
+
 ```javascript
 async function getUsers(users) {
 	try {
@@ -90,7 +141,9 @@ async function getUsers(users) {
 	}
 }
 ```
+
 Await must be used within functions that are declared with async in front. ie)
+
 ```javascript
 async function makeCoffee() {
     try {
@@ -104,61 +157,10 @@ async function makeCoffee() {
   console.log(result);
 }
 ```
+
 <ol>
   <li> Async/Await reduces the amount of code and cleans it up without complicated, nested promises
   <li> Can use error handling with try/catch instead of in each promise
   <li> Error stacks shows exact place instead of ambiguous errors in Promises loops
   <li> Avoid Callback-hell (Not fun :sob: )
 </ol>
-
-### Partials & EJS
-EJS is a templating language that allows you to generate HTML markup with Javascript. You incorporate template tags into the html text.
-
-```html
-<ul>
-  <% users.forEach(function(user){ %>
-    <%- include('user/show', {user: user}); %>
-  <% }); %>
-</ul>
-```
-Partials are smaller ejs files that can be incorporated into the larger webpage. For example, a nabar can be a seperate ejs file to be included into the index page.
-```html
-<!-- views/pages/index.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <% include ("./partials/head.ejs") %>
-</head>
-<body class="container">
-
-<header>
-    <% include ("./partials/header.ejs") %>
-</header>
-```
-You can pass values into your ejs files to be used. ie) Passing in objects, errors, arrays, etc.
-```javascript
-app.get('/', function (req, res) {
-    res.render('index', {weatherObject: null, error: null, format: null, location:null});
-})
-```
-### Escaping vs Unescaping
-<a href="https://stackoverflow.com/questions/20727910/what-is-escaped-unescaped-output">Escaping and unscaping </a>
-are useful to prevent Cross Site Scripting (XSS) attacks. HTML escaping is when you encode the special characters of a text, it will store it differently than expected. ie) User inputs this into the text field.
-```html
-<script>
-    alert("Welcome");
-</script>
-```
-However it will be stored as follows in the DB.
-```html
-&lt;script&gt;<br/>        alert(&quot;Welcome&quot;);<br/>&lt;/script&gt;
-```
-As such, the browser will display the previous text and so will not execute it.
-
-### TOOLS
-<ul>
-	<li> browsersync - one of the coolest nodejs software that I've ever used. It refreshes the browser each time the files specified are saved. ie) folder 'views', 'css/*.css" and etc.
-
-```
-browser-sync start --proxy 'localhost:3000' --files 'views'
-```

@@ -1,5 +1,5 @@
 # ReactJS Cheatsheet
-React is a front-end framework that simplifies the difficulty of implementing web apps by making it declarative and component based.
+React is a front-end framework that makes writing client-side code easier and more maintainable.
 
 The three main principles of React are
 <ol>
