@@ -141,7 +141,6 @@ async function getUsers(users) {
 	}
 }
 ```
-
 Await must be used within functions that are declared with async in front. ie)
 
 ```javascript
@@ -157,10 +156,69 @@ async function makeCoffee() {
   console.log(result);
 }
 ```
+However, if you don't have to wait for your responses sequentially you can wrap all your await statements in a Promise.all() function. The whole point of the event
+loop is to avoid blocking code.
+```javascript
+async function getUsers(users) {
+	try {
+		user0 = axios.get(`/users/userId=${users[0]}`);
+		user1 = axios.get(`/users/userId=${users[1]}`);
+		user2 = axios.get(`/users/userId=${users[2]}`);
+		user3 = axios.get(`/users/userId=${users[3]}`);
 
+		response = await Promise.all([user0, user1, user2, user3]);
+	} catch (err) {
+		console.log(err);
+	}
+}
+```
 <ol>
   <li> Async/Await reduces the amount of code and cleans it up without complicated, nested promises
   <li> Can use error handling with try/catch instead of in each promise
   <li> Error stacks shows exact place instead of ambiguous errors in Promises loops
   <li> Avoid Callback-hell (Not fun :sob: )
 </ol>
+
+### Scope vs Context
+Scope refers to the visibility of the variables while context refers to the object to which a function belongs.
+http://ryanmorr.com/understanding-scope-and-context-in-javascript/
+
+<dl>
+	<dt>Scope</dt>
+	<dd>Scope pertains to the variable access of a function when it is invoked and is unique to each
+	invocation.</dd>
+	<dd>Var is function scoped and let is block scoped which is denoted by the enclosing block {}.</dd>
+	<dt>Context</dt>
+	<dd>Is always the value of ```this``` keyword which is a reference to the object
+	that "owns" the currently executing code.</dd>
+	<dd>Using 'this' keyword refers to the object that the function is executing in.</dd>
+</dl>
+
+```javascript
+	var shop = {
+	fruit: "Apple",
+	sellMe: function() {
+		console.log("this ", this.fruit);
+	// => this Apple
+		console.log("shop ", shop.fruit);
+	// => shop Apple
+	}
+}
+
+shop.sellMe()
+```
+https://medium.com/dev-bits/a-perfect-guide-for-cracking-a-javascript-interview-a-developers-perspective-23a5c0fa4d0d
+There are three types of scopes in ES6.
+<ul>
+	<li>Global scope: Variables declared in the global scope can be accessed by all functions.</li>
+	<li>Local Scope/Function Scope: Variables declared can only be accessed within 
+	the function itself.</li>
+	<li>Block scope(ES6): Variables declared can only be accessed within the block {} scope.</li>
+</li>
+
+### Closures
+Closures are when a nested or inner function declared inside an outer function has access to the outer functions variables. To expose a function, return it or pass it to another function to use the closure.
+
+https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36
+
+This is similar to the getter or setter functions of a class object in C++. 
