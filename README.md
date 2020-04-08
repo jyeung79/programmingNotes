@@ -1,224 +1,127 @@
-# Javascript-cheatsheet
-Cheatsheet on Javascript language, programming paradigms, tips&tricks, etc. 
+# Path to Learning Programming
+It seems that learning how to program is different from CS. CS is the study of computers and it's more theoretical. It is interesting but not essential for getting a job right now.
+I want a job in Sotftware Dev specifically Web Development both front-end and back-end. I prefer front-end more but I want to be competent in both.
 
-Javascript is an interpreted language so it is interpreted line-by-line at run-time. Many browsers nowadays have Just-In-Time (JIT) compiliation which compiles Javascript into executable bytecode. This contrasts to compiled language such as C++, Java and Rust which must be compiled to machine code first before it's run.
+### (Optional) [Teach Yourself Computer Science](https://teachyourselfcs.com/#programming)
+All of these resouces show all the subjects of Computer Science.
+However, as of this moment I am not too sure this would help me that much. I do want to learn CS but this does not prepare me for the job or for programming interviews.
 
-## Client-side vs Server-side
-Javascript is a high-level programming language that focuses on running client-side code on the web browser. Client-side means that the code runs through the browser on the client or user's device when they open the website or such. This contrast to server-side which means that the action takes place on the web server instead of a user's computer.
+[SICP](http://sarabander.github.io/sicp/html/index.xhtml) is preferred but an easier book is [How to Design Programs](https://htdp.org/2018-01-06/Book/)
 
- Javascript can do the following on the client-side such as.
-<ol>
-	<li> <strong>Render</strong> - Change the display or view on the browser
-	<li> <strong>Post</strong> - Send data to a server
-	<li> <strong>Get</strong> - Fetch more data from the server 
-</ol>
-However, with the advent of NodeJS, JS can be written on the server-side which means that it can now
-<ol>
-	<li> Write to APIs
-	<li> Talk to Databases
-	<li> Talk to Servers
-</ol>
+## 0. Learning Computer Science
+1. This might be a good intro to programming [CS50x](https://cs50.harvard.edu/x/2020/syllabus/)
+<strong>(Already Know this)</strong>
 
-### Front-End Frameworks
-Front-end frameworks such as React, Angular and Vue enable client-side code to be easier and maintainable. There are strengths and caveats to each of the frameworks depending on usecases, project complexity and size etc.
+## 1. Preparing for the Coding Interview
+3 major steps in preparing for the Coding Interview
 
-## OOP vs Functional programming
-Object Oriented Programming - programming paradigm that focuses on three aspects
-<ol>
-  <li> Encapsulation - Hiding implementation details from outside to prevent improper changes to private data. ex) Black box with known inputs and outputs
-  <li> Inheritance - Child classes derives attributes and methods from parent classes. Child classes may have uniqure attributes apart from parent class. This is the same as JS Object Prototypes. All JS objects inherit properties and methods from a prototype. ex) I inherit my big butt genes from my parents
-   <li> Polymorphism - Objects can take on multiple forms. Methods that might belong to one class might be overridden with a diffrent implementation. This includes function/operator overloading and overriding. ex) A man can be a father, a husband, an employee and NBA basketball player
-</ol>
-<a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0">Functional Programming</a> - a programming paradigm that focuses on pure functions
-<ol>
-  <li> Pure functions - functions where return values are only determined by input values without observable side effects
-  <li> Function composition
-  <li> No shared state
-  <li> No side-effects
-  <li> Immutable data
-</ol>
+1. Prepare a portfolio that makes recruiters want to interview you. It shows your skills and technical knowledge.
 
-### Javascript Data Types
-Javascript is a loosely typed or dynamic language. This means that variables are not directly declared it's typing compared to staticly typed languages such as C++. However, Typescript address this issues.
+    1. Do projects and show it on the portfolio page
+    2. Record what courses you took and document knowledge acquired
+        1. This cheatsheet might be helpful in taking notes and everything that I need
 
-Data Types are split into two categories: Primitives or single celled data types and Objects or a group of data. Primitives are immmutable so variables can only be reassigned data.
-Primitives include
-<ol>
-  <li> <strong>Boolean</strong> - true or false / 1 or 0
-  <li> <strong>Null</strong> - user-assigned data type that says data has no value
-  <li> <strong>Undefined</strong> - no datatype has been assigned to the variable or data is empty
-  <li> <strong>Number</strong> - JS has number type as float data-types. This includes +/- infinity and NaN. BigInt can represent intergers beyond the safe integer limit for Nubmers with arbitrary preision. 
-  <li> <strong>String</strong> - sequence of characters with indices
-  <li> <strong>Symbol</strong> - unique and immutable primitive type and can be used as a key for an Object
-</ol>
-Objects include Arrays and Objects or commonly known as Hash Tables. 
-Arrays are instatiated using [] and Objects are declared using {}.
-Each array value has an index and a value. Each object has a key and a value.
+Practice Coding Questions [CodeWars](https://www.codewars.com/?language=javascript)
+1. Start doing easy problems on Leetcode to get up to speed [LeetCode - Easy](https://leetcode.com/problemset/top-interview-questions/?difficulty=Easy)
+    * After you get comfortable start doing medium questions and hard questions
+2. Read through problems and solutions, however these solutions are all in Java [Elements of Programming Interview](http://120.107.155.180/download/%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88/J2SE/Elements%20of%20Programming%20Interviews%20in%20Java_The%20Insiders'%20Guide.pdf)
+3. Another website of DSA problems [Techie Delight](https://www.techiedelight.com/list-of-problems/)
 
-```javascript
-const fruits = ['bananas', 'tomatoes', 'apples', 1243.5545, null, true]; // Arrays can hold different primitives and object types
-let trivia = {basketball:'Michael Jordan', hockey:'Wayne Gretzky', football:{ 1:45, 5:twenty, 8:566 running: function() } }; // Have objects nested into objects
-```
-Declare your variables with either const or let. Var can cause variables to leek out of it's block scope into outer scope. This can cause unpredictable and undesirable behavior.
-```javascript
-var i = 'happy'; // Don't use. Value escapes out of block scope. Deprecated use
-const j = 12345; // Used to declare a variable and assign a value once. Cannot reassign new data
-let k = []; // Declare a variable with reassignable values.
-```
 
-### Promises vs Async/Await
-Promise is an object that is a placeholder for the resulting value of an asynchronous operation. A promise is in one of these states:
-<ul>
-  <li> Pending: initial state neither fulfilled or rejected
-  <li> Fulfilled: operation completed successfully
-  <li> Rejected: meaning that the operation failed
-</ul>
-To understand Async/Await better you must understand <a href="https://medium.com/@bluepnume/learn-about-promises-before-you-start-using-async-await-eb148164a9c8"> promises.</a>
-The reason you want to want to use Async/Await instead of Promises is to avoid
-<a href="https://getstream.io/blog/javascript-promises-and-why-async-await-wins-the-battle/#callback-hell">Callback-hell.</a>
+### Resources for understanding coding interview process
+I think article is pretty good too for getting an understanding of what we dont know.
+[10 interview questions](https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95)
 
-```javascript
-function getUsers(userId) {
-	axios
-		.get(`/users/userId=${users[0]}`)
-		.then(res => {
-			// save the response for user 1
-			response.push(res);
+At a point where I am confident in solving coding questions, I can start mock interview prep [interviewing.io](https://interviewing.io/)
 
-			axios
-				.get(`/users/userId=${users[1]}`)
-				.then(res => {
-					// save the response for user 2
-					response.push(res);
+#### (Optional Information)
+Advice for google's type of interview [Get the Job at Google](http://steve-yegge.blogspot.com/2008/03/get-that-job-at-google.html)
 
-					axios
-						.get(`/users/userId=${users[2]}`)
-						.then(res => {
-							// save the response for user 3
-							response.push(2);
+Blog post for interview preparation [gainlo](http://blog.gainlo.co/?utm_source=Gainlo&utm_medium=button-hl&utm_campaign=Gainlo)
 
-							axios
-								.get(`/users/userId=${users[3]}`)
-								.then(res => {
-									// save the response for user 4
-									response.push(res);
-								})
-								.catch(err => {
-									// handle error
-									console.log(err);
-								});
-						})
-						.catch(err => {
-							// handle error
-							console.log(err);
-						});
-				})
-				.catch(err => {
-					// handle error
-					console.log(err);
-				});
-		})
-		.catch(err => {
-			// handle error
-			console.log(err);
-		});
-}
-```
 
-Instead you can use 
-<a href='https://blog.logrocket.com/promise-chaining-is-dead-long-live-async-await-445897870abc/'>Async/Await</a>.
- Code is simplified and reduced significantly. Also there is no need to chain promises to make infinite callback loops.
 
-```javascript
-async function getUsers(users) {
-	try {
-		response[0] = await axios.get(`/users/userId=${users[0]}`);
-		response[1] = await axios.get(`/users/userId=${users[1]}`);
-		response[2] = await axios.get(`/users/userId=${users[2]}`);
-		response[3] = await axios.get(`/users/userId=${users[3]}`);
-	} catch (err) {
-		console.log(err);
-	}
-}
-```
-Await must be used within functions that are declared with async in front. ie)
+## 2. Learning Web Devlopment
 
-```javascript
-async function makeCoffee() {
-    try {
-    	let cupOfMojo = await promiseToMakeCoffee;
-    } catch(err) {
-    	console.log('Let me sleep more Zzzzz');
-    }
-  }
-  
-  let result = await promiseToMakeCoffee;
-  console.log(result);
-}
-```
-However, if you don't have to wait for your responses sequentially you can wrap all your await statements in a Promise.all() function. The whole point of the event
-loop is to avoid blocking code.
-```javascript
-async function getUsers(users) {
-	try {
-		user0 = axios.get(`/users/userId=${users[0]}`);
-		user1 = axios.get(`/users/userId=${users[1]}`);
-		user2 = axios.get(`/users/userId=${users[2]}`);
-		user3 = axios.get(`/users/userId=${users[3]}`);
+There's so many resources and guides to this but essentially it boils down to these two many categories.
 
-		response = await Promise.all([user0, user1, user2, user3]);
-	} catch (err) {
-		console.log(err);
-	}
-}
-```
-<ol>
-  <li> Async/Await reduces the amount of code and cleans it up without complicated, nested promises
-  <li> Can use error handling with try/catch instead of in each promise
-  <li> Error stacks shows exact place instead of ambiguous errors in Promises loops
-  <li> Avoid Callback-hell (Not fun :sob: )
-</ol>
+1. Front-end
+    1. Html & CSS
+    2. Javascript - This website contails all the needed content [javascript.info](https://javascript.info/)
+        1. Javascript Basics
+        2. Advanced Javascript
+            1. [Mozilla resource](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
+            2. [Odin Project](https://www.theodinproject.com/dashboard)
+            3. [Javascript in 30 days](https://github.com/Asabeneh/30DaysOfJavaScript)
+    3. Learning React & Redux
+        1. React Official Docs[reactjs](https://reactjs.org/docs/introducing-jsx.html)
+        2. Better Explanation [react.express](http://www.react.express/)
 
-### Scope vs Context
-Scope refers to the visibility of the variables while context refers to the object to which a function belongs.
-http://ryanmorr.com/understanding-scope-and-context-in-javascript/
 
-<dl>
-	<dt>Scope</dt>
-	<dd>Scope pertains to the variable access of a function when it is invoked and is unique to each
-	invocation.</dd>
-	<dd>Var is function scoped and let is block scoped which is denoted by the enclosing block {}.</dd>
-	<dt>Context</dt>
-	<dd>Is always the value of ```this``` keyword which is a reference to the object
-	that "owns" the currently executing code.</dd>
-	<dd>Using 'this' keyword refers to the object that the function is executing in.</dd>
-</dl>
+    4. GatsbyJS is also a great way to learn react
 
-```javascript
-	var shop = {
-	fruit: "Apple",
-	sellMe: function() {
-		console.log("this ", this.fruit);
-	// => this Apple
-		console.log("shop ", shop.fruit);
-	// => shop Apple
-	}
-}
+2. Back-end
+    1. NodeJS & Express
+        1. Finish the part in TOP first
+    2. Databases [Popularity](https://scalegrid.io/blog/2019-database-trends-sql-vs-nosql-top-databases-single-vs-multiple-database-use/)
+        1. SQL - PostgreSQL
+        2. NoSQL - MongoDB
 
-shop.sellMe()
-```
-https://medium.com/dev-bits/a-perfect-guide-for-cracking-a-javascript-interview-a-developers-perspective-23a5c0fa4d0d
-There are three types of scopes in ES6.
-<ul>
-	<li>Global scope: Variables declared in the global scope can be accessed by all functions.</li>
-	<li>Local Scope/Function Scope: Variables declared can only be accessed within 
-	the function itself.</li>
-	<li>Block scope(ES6): Variables declared can only be accessed within the block {} scope.</li>
-</li>
 
-### Closures
-Closures are when a nested or inner function declared inside an outer function has access to the outer functions variables. To expose a function, return it or pass it to another function to use the closure.
+These courses actually look great [rithmschool](https://www.rithmschool.com/courses#jsfundamentals)
 
-https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36
+3. Data Structures & Algorithms
+    1. There seems to be a good basic course [rithm course](https://www.rithmschool.com/courses/javascript-computer-science-fundamentals)
+    2. Algorithms split up into two very highly rated courses from Princeton
+        1. Algorithms Part 1 [4.8/5](https://www.coursera.org/learn/algorithms-part1)
+        2. Algorithms Part 2 [4.9/5](https://www.coursera.org/learn/algorithms-part2)
+        3. Want to learn more theres a whole coursera [specialization](https://ww.coursera.org/specializations/algorithms)
 
-This is similar to the getter or setter functions of a class object in C++. 
+4. Other stuff
+    1. Cryptography [4.8](https://www.coursera.org/learn/crypto#syllabus)
+    2. [Machine Learning Course](https://www.coursera.org/learn/machine-learning/home/welcome)
+        1. ML guide for [WebDev](https://www.robinwieruch.de/machine-learning-javascript-web-developers)
+
+https://learn-anything.xyz/web-development
+https://www.freecodecamp.org/news/a-study-plan-to-cure-javascript-fatigue-8ad3a54f2eb1/
+http://aosabook.org/en/index.html
+
+This is a good Developer roadmap view [Front-end](https://roadmap.sh/frontend) / [Back-end](https://roadmap.sh/backend)
+
+#### This is a complete view of modern web devlopment [Spellbook of Modern Web Dev](https://github.com/dexteryy/spellbook-of-modern-webdev#css-features)
+
+### Others
+
+File Optimization [reddit](https://www.reddit.com/r/webdev/wiki/optimization)
+
+Project ideas [reddit](https://github.com/tuvtran/project-based-learning#javascript)
+
+# Current Roadmap
+1. Practice coding problems on Codewars (2 tomatos)
+    * Go to Leetcode when kyu 3 or something
+2. Learn Programming
+    1. [30 days of Javascript](https://github.com/Asabeneh/30DaysOfJavaScript)
+
+        - [x] Day 1 - 9 : Primitives, Arrays, Objects, conditionals, booleans, functions, loops, HOF
+        - [x] Day 10 - 12 : Functional, Set&Map, Destructuring, RegEx
+        - [x] Day 13 - 16 : Console, Classes, Json
+        - [x] Day 17 - 20 : Web Storage, Promise, Closure, Coding Styles
+        * Up To Day 20 > DOM
+
+    2. [DSA](https://www.rithmschool.com/courses/javascript-computer-science-fundamentals)
+    3. NodeJS & Express.js [Fundamentals](https://www.rithmschool.com/courses/node-express-fundamentals) & [Intermediate](https://www.rithmschool.com/courses/intermediate-node-express)
+    4. Just do the [SQL](https://www.rithmschool.com/courses/flask-fundamentals) portion
+    5. Learning React 
+        1. Learn ReactJS through [GatsbyJS](https://www.gatsbyjs.org/tutorial/part-four/)
+        2. Use these as reference[Official](https://reactjs.org/docs/introducing-jsx.html) & [Companion](http://www.react.express/modern_javascript)
+        3. Good guide in steps in learning [react roadmap](https://www.freecodecamp.org/news/learning-react-roadmap-from-scratch-to-advanced-bff7735531b6/)
+3. Migrate Breeze into Gatsby.JS
+    1. Add feature to select historical weather dates
+    2. Use GraphQL to get API request
+4. Extra learning
+    1. [GraphQL](https://www.howtographql.com/basics/2-core-concepts/)
+    2. Machine Learning 
+    3. TensorFlow.JS
+    4. Deep Learning
+        1. NLP
+        2. Image Recognition or CV
