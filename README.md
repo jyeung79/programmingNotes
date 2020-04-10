@@ -97,28 +97,63 @@ File Optimization [reddit](https://www.reddit.com/r/webdev/wiki/optimization)
 Project ideas [reddit](https://github.com/tuvtran/project-based-learning#javascript)
 
 # Current Roadmap
-1. Practice coding problems on Codewars (2 tomatos)
-    * Go to Leetcode when kyu 3 or something
+Deep Work - Set a cutoff time where you stop working <strong>[7pm is my cutoff]</strong>
+How many pomodoros do I place each day to do work? <strong>[12 is min.]</strong>
+Do the tasks you dread the most in the morning. (Usually ICBC issues, CRT & Lawyer, Editing Resume & Cover Letter)
+4/4/4 - Coding Problems/Learning/Projects
+
+### Learning Roadmaps
+1. Do leetcoode questions [Leetcode Top Interview Questions](https://leetcode.com/problemset/top-interview-questions/)
+    - [ ] Do easy questions first so that you can get up to speed [Easy Questions](https://leetcode.com/problemset/top-interview-questions/?difficulty=Easy)
+    - [ ] Do medium questions so that you can prepare for real coding interview questions [Medium Questions](https://leetcode.com/problemset/top-interview-questions/?difficulty=Medium)
+    - [ ] Do all the questions on the blind curated list [75 Questions Cover Coding Problems](https://leetcode.com/list/?selectedList=xq8yukpm)
+
 2. Learn Programming
-    1. [30 days of Javascript](https://github.com/Asabeneh/30DaysOfJavaScript)
-
-        - [x] Day 1 - 9 : Primitives, Arrays, Objects, conditionals, booleans, functions, loops, HOF
-        - [x] Day 10 - 12 : Functional, Set&Map, Destructuring, RegEx
-        - [x] Day 13 - 16 : Console, Classes, Json
-        - [x] Day 17 - 20 : Web Storage, Promise, Closure, Coding Styles
-        * Up To Day 20 > DOM
-
-    2. [DSA](https://www.rithmschool.com/courses/javascript-computer-science-fundamentals)
-    3. NodeJS & Express.js [Fundamentals](https://www.rithmschool.com/courses/node-express-fundamentals) & [Intermediate](https://www.rithmschool.com/courses/intermediate-node-express)
-    4. Just do the [SQL](https://www.rithmschool.com/courses/flask-fundamentals) portion
+    1. Learning Javascript:  [30 days of Javascript](https://github.com/Asabeneh/30DaysOfJavaScript)
+        - [ ] Day 1 - 9 : Primitives, Arrays, Objects, conditionals, booleans, functions, loops, HOF
+        - [ ] Day 10 - 12 : Functional, Set&Map, Destructuring, RegEx
+        - [ ] Day 13 - 16 : Console, Classes, Json
+        - [ ] Day 17 - 20 : Web Storage, Promise, Closure, Coding Styles
+        - [x] > Day 20 is DOM & projects
+    2. Learning Data Structures
+        - [ ] [DSA](https://www.rithmschool.com/courses/javascript-computer-science-fundamentals) briefly followed by
+        - [ ] [Algorithms I](https://www.coursera.org/learn/algorithms-part1/home/welcome)
+        - [ ] [Algorithms II](https://www.coursera.org/learn/algorithms-part2/home/welcome)
+    3. NodeJS & Express.js [The Odin Project](https://www.theodinproject.com/courses/nodejs)
+        - [ ] NodeJS & Express 101 - 102 : NodeJS, Crud MVC
+        - [ ] Express 103 - 105 : Routes, Controllers, Views, Forms
+        - [ ] Authentication, APIs & Testing
+    4. SQL & NoSQL
+        - [ ] There's 11 chapters and its all free [studybyyourself](http://studybyyourself.com/seminar/sql/course/?lang=en)
+        - [ ] Ch 1 - 4 : Intro, Entity, Table, Simply Query, Formatting & Alias
+        - [ ] Ch 5 - 8 : Aggregate functions, Join, Subgroup, Subquery
+        - [ ] Ch 9 - 11 : Sort & Limit, Review, Advices
     5. Learning React 
-        1. Learn ReactJS through [GatsbyJS](https://www.gatsbyjs.org/tutorial/part-four/)
-        2. Use these as reference[Official](https://reactjs.org/docs/introducing-jsx.html) & [Companion](http://www.react.express/modern_javascript)
-        3. Good guide in steps in learning [react roadmap](https://www.freecodecamp.org/news/learning-react-roadmap-from-scratch-to-advanced-bff7735531b6/)
-3. Migrate Breeze into Gatsby.JS
-    1. Add feature to select historical weather dates
+        - [x] Learn ReactJS through [GatsbyJS](https://www.gatsbyjs.org/tutorial/part-four/)
+        - [ ] All fundamental react js concepts [All fundamentals of React](https://www.freecodecamp.org/news/all-the-fundamental-react-js-concepts-jammed-into-this-single-medium-article-c83f9b53eac2/)
+        - [ ] Use these as reference[Official](https://reactjs.org/docs/introducing-jsx.html) & [Companion](http://www.react.express/modern_javascript)
+        - [ ] Good guide in steps in learning [react roadmap](https://www.freecodecamp.org/news/learning-react-roadmap-from-scratch-to-advanced-bff7735531b6/)
+
+3. Migrate Breeze to React
+    1. Add feature to select dates and retrieve historical weather dates
     2. Use GraphQL to get API request
-4. Extra learning
+
+4. Possible Project Ideas
+    Prayer journal instead of a prayer request app? I'm pretty sure theres a lot of prayer journal apps out there already
+    1. Prayer Request App - Centralized website of prayer request for a group or an individuals
+        * Share prayer request as a link
+        * View all your friends or starred lists of prayer request
+        * Prayer Request list have comments or parts where you can answer
+        * Search for prayer request for peoples needs and such
+    2. Webnovel Platform - Centralized website where people can post web novels and viewers can read them, donate to authors and participate in chat
+        * Read novels platform that is simple, easy to navigate and fast
+        * Authors can post novels and have people subscribe or donate to read and such
+        * Have account management and authentication
+        * Have proper payment transaction security
+    3. 
+
+### (Optional) - Off time learning
+1. Extra learning
     1. [GraphQL](https://www.howtographql.com/basics/2-core-concepts/)
     2. Machine Learning 
     3. TensorFlow.JS
