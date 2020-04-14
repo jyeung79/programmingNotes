@@ -100,7 +100,7 @@ Trying to make harder, more complex problems and reduce it into a easier problem
 Problem: Determine if one string is a rotation of the other one
 ie) "car" and "arc" are rotations of each other. Brute-force rotate every char in first string to match results in O(n^2). However reduce it into a string search problem. Concat the second string to itself and them search 1st string in the 2nd string. Find a match and they are rotations of each other. O(n^2) becomes O(n) problem.
 
-### 5. Graphy Modeling
+### 5. Graph Modeling
 Drawing pictures are a great way to brainstorm for a potential solution. If the relationship can be represented by a graph, then quite often it can be reduced to a well-known graph problem.
 
 Problem: Want to determine if an arbitrage exists with a given set of currencies. Basically, you want to make the most money converting money around.
@@ -155,9 +155,8 @@ Invariants is a condition that is true during execution. A variable or control l
 Invariants can also be used to analyze a given algorithm, prove correctness or analyze time complexity.
 
 
-## 0. Time & Space Complexity
 
-### Data Structure Operations Complexity
+### Data Structure Operations Complexity*
 
 | Data Structure          | Access    | Search    | Insertion | Deletion  | Comments  |
 | ----------------------- | :-------: | :-------: | :-------: | :-------: | :-------- |
@@ -172,7 +171,7 @@ Invariants can also be used to analyze a given algorithm, prove correctness or a
 | **AVL Tree**            | log(n)    | log(n)    | log(n)    | log(n)    |           |
 | **Bloom Filter**        | -         | 1         | 1         | -         | False positives are possible while searching |
 
-### Array Sorting Algorithms Complexity
+### Array Sorting Algorithms Complexity*
 
 | Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |
 | --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |
@@ -188,53 +187,133 @@ Invariants can also be used to analyze a given algorithm, prove correctness or a
 
 *Taken from [Javacript Algorithms and Data Structures](https://github.com/trekhleb/javascript-algorithms)
 
+## 0. Time & Space Complexity
+Time complexity is denoted by a O(...) where the ... refers to the function; n denotes the input size.
+
+### Loops
+If there are k nested loops, the time complexity becomes O(n<sup>k</sup>).
+
+### Order of Magnitude
+Time complexity does not tell us the exact number of times the code is ran but it gives us a general idea of the order of magnitude of the computation.
+
+### Phases
+If an algorithm contains multiple phases, subcomponents of algorithms, then the total time complexity becomes the largest time complexity of a single phase. This is because
+the slowest phase is usually the bottleneck of the code.
+
+As shown below, out of the three time complexities O(n), O(n^2) and O(n), O(n^2) is the slowest thus the total time complexity is O(n^2).
+```javascript
+for (int i = 1; i <= n; i++) {
+// O(n)
+}
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+    // O(n^2)
+    }
+}
+for (int i = 1; i <= n; i++) {
+// O(n)
+}
+```
+
+### Several Variables
+If the time complexity contains multiple variables then include them in the time complexity.
+
+```javascript
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= m; j++) {
+    // O(n x m) time complexity
+    }
+}
+```
+
+### Recursion
+The time complexity of a recursive function depends on
+    - number of times the function is called
+    - the time complexity of a single call.
+
+```javascript
+const f( n) {
+    if (n == 1) return;
+    f(n-1);
+}
+```
+Here, the single call is only O(1) and since there are n number of function calls, the time complexity becomes O(n).
+
+However, if you have a higher time complexity of a call then the total time complexity drastically increases.
+
+```javascript
+const g(n) {
+    if (n == 1) return;
+    g(n-1); // Have 2 call to a recursive functio
+    g(n-1);
+}
+```
+Each function call generates two other calls except for n = 1. Thus there is a exponentially increasing amount of call 2<sup>n</sup>.
+
+|function call| num of calls  |
+|---|---|
+| g(n)  |  1 |
+| g(n-1)  | 2  |
+| g(n-2)  | 4  |
+| ...  | ...  |
+| g(1)  |  2<sup>n</sup> - 1 |
+
+This means that the time complexity becomes O(2<sup>n</sup>).
+
+### Commplexity classes
+The following list contains the common time complexities
 
 
-## 1. Primitves
+#### O(log(n)) - Constant Time
+The running-time of the algorithm does not depend on the input size. A typical constant-time algorithm directly calculates an answer.
+
+#### O(n&nbsp;log(n)) - Logarithmic Time
+Logarithmic algorithm often halves the input size at each step. Running time is logarithmic because log<sub>2</sub>n represetns the number of times
+n must be divided by 2 to get 1.
+
+#### O($\sqrt{n}$) - Square Root
+Slower than logarithmic algorithms but faster than O(n). A special property of square roots is that $\sqrt{n}$) = n/$\sqrt{n}$), so square root $\sqrt{n}$) lies
+somewhere in the middle of the input.  
+
+#### O(n) - Linear Time
+Given a n input size, the running time is O(n) because the algorithm has to access each input element at least once before reporting the answer.
+Usually the best possible time complexity.
+
+#### O(n&nbsp;logn) - n&nbsp;log(n) Time
+Either the algorithm has to sort the input because efficient sorting algorithms take O(n&nbsp;log(n)) time complexity or
+the data structure's operations take O(log(n)) time.
+
+#### O(n<sup>2</sup>)
+Often contains 2 nested loops.
+
+#### O(2<sup>n</sup>)
+This algorithm iterates all subsets of the input element. For example the subsets of {1, 2, 3} are 
+null, {1}, {2}, {3}, {1,2}, {1,3}, {2,3} and {1,2,3}.
+
+#### O(n!)
+This algorithm iterates through all permutations of the input element. For example, the permutations of
+{1,2,3} are (1,2,3), (1,3,2), (2,1,3), (2,3,1), (3,1,2) and (3,2,1}.
 
 
-## 2. Arrays
+An algorithm is polynomial if its time complexity is at most O(n<sup>k</sup>) where k = constant. (O(2<sup>n</sup> and O(n!) are not)
+Usually k is small so polynomial time complexity roughly means the algorithm is efficient.
 
 
-## 3. Strings
+### Estimating Efficiency
+Before implementing an algorithm, we can figure out if its efficient enough for the problem by calculating the time complexity.
 
+Given the input size, we can try to guess the required time complexity of the algorithm that solves the problem. The table below contains
+some userful estimates assuming time limit of one second.
 
-## 4. Linked Lists
+|input size     | required time complexity  |
+|:--------------|--------------------------|
+|n ≤ 10     | O(n!)  |
+|n ≤ 20     | O(2<su>n</sup>)  |
+|n ≤ 500    | O(n<sup>3</sup>)    |
+|n ≤ 5000   | O(n<sup>2</sup>)   |
+|n ≤ 106    | O(n&nbsp;logn) or O(n)  |
+|n is large | O(1) or O(logn)  |
 
-
-## 5. Stacks & Queues
-
-
-## 6. Binary Trees
-
-
-## 7. Heaps
-
-
-## 8. Searching
-
-
-## 9. Hash Tables
-
-
-## 10. Sorting
-
-
-## 11. Binary Search Trees
-
-
-## 12. Recursion
-
-
-### Covered less often in Programming Interviews
-
-## 13. Dynamic Programming
-
-
-## 14. Greedy Algorithms & Invariants
-
-
-## 15. Graphs
-
-
-## 16. Parallel Computing
+This helps to design algorithms because it eliminates approaches with worst time complexity.
+* Note: Time complexity is an approximation because it hides away the constant factor. In real applications, there are differing effects on computation speeds because
+of the constant factor.

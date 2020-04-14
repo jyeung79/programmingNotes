@@ -236,6 +236,13 @@ http://ryanmorr.com/understanding-scope-and-context-in-javascript/
 shop.sellMe()
 ```
 
+Window Scope : if you declare a and b on your browser then you will see the a and b in your window
+Global Scope: variables declared in the global scope can be accessed anywhere in the file
+	- global to the file or global relative to some block of code (block scope)
+Local Scope: Local scope means it can be accessed only in a certain block of code
+
+
+
 https://medium.com/dev-bits/a-perfect-guide-for-cracking-a-javascript-interview-a-developers-perspective-23a5c0fa4d0d
 There are three types of scopes in ES6.
 <ul>
