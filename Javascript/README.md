@@ -92,7 +92,19 @@ const j = 12345; // Used to declare a variable and assign a value once. Cannot r
 let k = []; // Declare a variable with reassignable values.
 ```
 
+### 4.1 Array Methods
+
+Javascript has a couple array methods that can alter the elements of an array.
+
+1. ```pop()``` - Remove the last element of an array
+2. ```push()``` - Add an item to the end of the array
+3. ```shift()``` - Remove the first element of an array
+4. ```unshift()``` - Add an item to the beginning of an array
+
+
 ## 5. Advanced Javascript
+
+
 
 ### 5.1. Promises vs Async/Await
 Promise is an object that is a placeholder for the resulting value of an asynchronous operation. A promise is in one of these states:
@@ -353,4 +365,182 @@ function sortArgs(...args) {
 ### Destructuring
 
 
-### Reference & Primitive types
+
+### Higher Order Functions
+
+Higher order functions take other functions as a parameter or return a function as a value. The function passed
+as a parameter is called callback.
+
+#### Callback
+
+A callback is a function which can be passed as parameter to other functions.
+
+```javascript
+const mixBatter = (ingredients) => {
+	// Mix ingredients
+};
+
+const makeCupcakes = (mixBatter, ingredients) => {
+	return mixBatter(ingredients);
+}
+
+```
+
+Understanding [callbacks](https://briggs.dev/blog/understanding-callbacks)
+
+Q: How does a promise work then? How is callback hell related to functions?
+
+#### Returning functions
+
+Higher order functions return functions as values.
+
+```javascript
+// Higher order function returning an other function
+const higherOrder = n => {
+  const doSomething = m => {
+    const doWhatEver = t => {
+      return 2 * n + 3 * m + t
+    }
+    return doWhatEver
+  }
+​
+  return doSomething
+}
+console.log(higherOrder(2)(3)(10))
+```
+
+forEach, map, reduce all use callback functions to do some sort of function call
+
+### Functional Programming
+
+These built-in Array prototype functions all use callbacks functions.
+ie) forEach, map, filter, reduce, find, every some, and sort
+
+Callback function Methods
+* forEach: Iterates through the array's elements and applies a callback function to each element
+* map: Returns a new array with a callback function applied to the input array
+* filter: Return the items that fulfill the filtering conditions
+* reduce: Returns a single accumulator value from sum and value
+* every: Returns boolean from checking if all elements meet the same condition
+* find: Return first element that meets the condition
+* findIndex: Return index of first element that meets condition
+* some: Check if one or more elements meet the condition
+* sort: Modifies the original array and sorts it by ascending or descending order
+  * Note: sort() for numbers sorts it as strings not numbers. Refer to fix below
+
+```javascript
+const numbers = [9.81, 3.14, 100, 37]
+console.log(numbers.sort()) //[100, 3.14, 37, 9.81]
+numbers.sort(function(a, b) {
+  return a - b
+})
+
+console.log(numbers) // [3.14, 9.81, 37, 100]
+
+numbers.sort(function(a, b) {
+  return b - a
+})
+```
+
+### Sets & Maps
+
+#### Sets
+
+Set is a collection of elements. Compared to arrays, a set can only contain unique elements.
+
+```javascript
+const companies = new Set(); // {} Sets are also objects
+
+const fruit = ['apples', 'oranges', 'apples', 'bananas'];
+const fruitNames = new Set(fruit); //Set(4) {'apples', 'oranges', 'bananas'}
+```
+
+Sets can be used to:
+
+1. Count unique items in an array
+2. Find a union of two sets
+3. Difference of two sets
+
+```javascript
+//Union of sets
+let a = [1, 2, 3, 4, 5]
+let b = [3, 4, 5, 6]
+let c = [...a, ...b]
+
+let A = new Set(a)
+let B = new Set(b)
+let C = new Set(c) // Set(6) {1, 2, 3, 4, 5, 6}
+
+//Intersection of Sets
+let a = [1, 2, 3, 4, 5]
+let b = [3, 4, 5, 6]
+
+let A = new Set(a)
+let B = new Set(b)
+
+let c = a.filter(num => B.has(num))
+let C = new Set(c) // Set(3) {3, 4, 5}
+
+// Difference of Sets
+let a = [1, 2, 3, 4, 5]
+let b = [3, 4, 5, 6]
+
+let A = new Set(a)
+let B = new Set(b)
+
+let c = a.filter(num => !B.has(num))
+let C = new Set(c) // Set(2) {1, 2}
+
+```
+
+#### Maps
+
+
+
+
+### [Function Declaration vs Expression](https://medium.com/@mandeep1012/function-declarations-vs-function-expressions-b43646042052)
+
+Function declaration means that the function is "saved for later use" while function expressions
+are executed when the interpreter reaches that line of code.
+
+```javascript
+// Function Expression
+console.log(foo()); // ERROR foo wasn't loaded
+const foo = function { return 'foo'; }
+
+// Function Declaration
+console.log(boo()) // Prints 'boo' onto console
+const function boo() { return 'boo'; }
+```
+
+Function declarations are hoisted to the top of the code while function expressions are not.
+Benefits of using function expressions are:
+
+1. Closures
+2. Arguments to other functions
+3. IIFE
+
+NOTE: Arrow functions are similar to function expressions so they are not hoisted.
+
+### [IIFE](https://flaviocopes.com/javascript-iife/)
+
+Immediately invoked function expressions are immediately called when they are defined. 
+
+```javascript
+(/* function declaraction - function declaration or arrow function */) ();
+(() => {
+	/* Arrow function for anonymous function */
+})())
+
+
+// IIFE can be named but they do not leak out to the global scope
+(function doSomething() {
+	/* Function is doing something */
+})())
+
+```
+
+Benefits of using IIFE
+
+1. Avoid polluting global object
+2. Isolate variables declaration
