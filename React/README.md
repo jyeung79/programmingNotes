@@ -8,8 +8,10 @@ The three main principles of React are
     <li> **LO,WA** Develop new features in React without rewriting previous code. Backwards-compatible.
 </ol>
 
-## JSX
-React uses JSX which is a subset of Javascript that allows writing of HTML directly within Javascript code. Thus it means that you are able to incorporate HTML tags or such into Javascript. 
+## 1. JSX
+**JSX IS NOT HTML.** React uses JSX which is a subset of Javascript that allows writing of HTML directly within Javascript code. Thus it means that you are able to incorporate HTML tags or such into Javascript.
+
+
 ```jsx
 function formatName(user) {
   return user.firstName + ' ' + user.lastName;
@@ -20,12 +22,14 @@ const user = {
   lastName: 'Perez'
 };
 
-const element = (
+const element = ( 
+  // JSX Code
     <div className='Header' datatest-id='Header'>
         <h1>
             Hello, {formatName(user)}!
         </h1>
     </div>
+  // End of JSX
 );
 
 ReactDOM.render(
@@ -34,8 +38,13 @@ ReactDOM.render(
 );
 ```
 
-## Components
+React calls ```React.createElement(...)``` when it parses the JSX code. Writing JSX is much easier and cleaner than calling ```React.createElements(...)``` over and over again.
+
+## 2.Components
 Components are encapsulated parts of code that can be resusable and isolated. This means you can modify the componenents without changing other files or functions.
+
+Components can be written as a **class-based component**:
+
 ```jsx
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -50,7 +59,62 @@ const el = document.body
 ReactDOM.render(<Hello name='John' />, el)
 ```
 
-## States
+or can be written as a **Functional component**
+
+```jsx
+const Hello = (name) => (
+    <div className='message-box'>
+      Hello {name}
+    </div>
+);
+const el = document.body
+ReactDOM.render(<Hello name='John' />, el)
+```
+
+Only two things lead React to update the DOM: States & Props.
+
+
+### 2.1. Props
+
+You can pass in arguments to your components through ```props``` object arguments.
+
+```jsx
+// Hello Component files
+const Hello = (props) => (
+    <div className='message-box'>
+      Hello {props.name}
+    </div>
+);
+// Other file
+<Hello name='Jennifer'/>
+```
+
+Another cool thing is passing the ```children``` argument. Following the above example we modify the Hello component.
+
+```jsx
+const Hello = (props) => (
+  <div>
+    Hello {props.name}
+    {children}
+  </div>
+);
+
+<Hello name='Rem'>Rem is the best!</Hello>
+```
+
+Anything that is passed between the opening and closing tag of the component is considered to be the ```children``` argument. Anything can be passed as the ```children```.
+
+
+You can pass methods as props such as ```onClickHandler``` or other events by reference. 
+
+
+### 2.2. Bind vs arrow function passing
+
+Bind performance should be much better than arrow function performance. Depends on the size of the application, the performance hit of using arrow functions might not be as major.
+
+https://medium.com/@charpeni/arrow-functions-in-class-properties-might-not-be-as-great-as-we-think-3b3551c440b1#:~:text=The%20initialization%20of%20arrow%20functions,are%20transpiled%20into%20the%20constructor.&text=them%20with%20super%20.-,Arrow%20functions%20in%20class%20properties%20are%20much%20slower%20than%20bound,going%20to%20pass%20it%20around
+
+## 3. States
 States are inner properties of the component that are seperate from the outer code and maintain it's state throughout it's lifecycle. 
 ```jsx
 constructor(props) {
@@ -63,16 +127,37 @@ render () {
   const { username } = this.state
   ···
 }
- 
+```
  
 Use states (this.state) to manage dynamic data.
 
 With Babel you can use proposal-class-fields and get rid of constructor
 
+```jsx
 class Hello extends Component {
   state = { username: undefined };
-  ...
+// ...rest of class
+
+<Hello name={this.state.username} />
 ```
+
+*HOWEVER,* there's a new way to maintain states called **Hooks**.  
+
+Class-based components states only have 1 state but functional components have multiple ```useState()```.
+Also, old states in functional states do not get merged compared to class-based components. However, in functional components you separate your states into multiple states instead.
+
+
+### 3.1. Events
+
+There is a list of supported events for React components:
+
+https://reactjs.org/docs/events.html#supported-events
+
+### 3.2. Manipulating States
+
+
+### 3.3. Stateful vs Stateless Components
+
 
 ## Hooks
 Hooks are a functions that allow you to use states and modify states without writing classes. They typically start with a *useState*, *useBurger* or *use...*. Hooks was released in React 16.8
@@ -117,6 +202,14 @@ function Example() {
   );
 }
 ```
+
+# 4. Understanding The Base Features & Syntax
+
+We need to
+1. Dependency/Package manager tool (npm or yarn)
+2. Bundler of files (webpack)
+3. Compiler of next-gen features to older browsers (babel)
+
 
 https://reactjs.org/docs/hello-world.html
 https://devhints.io/react

@@ -23,7 +23,8 @@ The most commonly used Data Structures are:
 ### Basic Types
 
 Computing the number of bits set to 1 in an integer-valued variable x
-    - y = x & ~(x - 1) ```// & is the bit-wise AND operator and ~ is the bit-wise NOT operator
+
+    - y = x & ~(x - 1) // & is the bit-wise AND operator and ~ is the bit-wise NOT operator
     - y is 1 at the lowest bit of x that is 1; all the rest is 0
 
 Note: Problems involved with bit-level data are often asked in interviews. It's easy to introduce errors in bit level operation. (Is this true for Javascript where you don't necessarily operate at the bit-level?)
@@ -95,13 +96,16 @@ Algorithm Design Patterns beneficial to solving interview problems can be split 
 ### 1. Concrete Examples
 
 Problems that seem too difficult can be become more tractable when you examine concrete examples.
-    i. Small Inputs such as BST with 5-7 inputs
-    ii. Extreme/Specialized INputs ie. binary values, nonoverlapping intervals, sorted arrays, connected graphs
 
-Problems: Smallest Non Constructible Value Problem
-The smallest non constructible value is where the added number u > V + 1 where V is the maximum constructible number (sum of all values). V+1 becomes the largest value that we cannot produce. Loop over a sorted array and stop when the condition of u > V + 1 is met.
+1. Small Inputs such as BST with 5-7 inputs
+2. Extreme/Specialized Inputs 
+   > ie. binary values, nonoverlapping intervals, sorted arrays, connected graphs
 
-ie) <1,2,4> -> 1,2,3,4,5,6,7 -> V = 8 and if u = 10 is added then V + 1= 9 is the largest non constructible value
+#### Problems: Smallest Non Constructible Value Problem
+
+The smallest non constructible value is where the added number ```u > V + 1``` where V is the maximum constructible number (sum of all values). ```V + 1``` becomes the largest value that we cannot produce. Loop over a sorted array and stop when the condition of ```u > V + 1``` is met.
+
+> ie) <1,2,4> -> 1,2,3,4,5,6,7 -> V = 8 and if u = 10 is added then V + 1= 9 is the largest non constructible value
 
 ### 2. Case Analysis
 
@@ -115,15 +119,17 @@ Oftentime most algorithms can be solved in a brute-force, exhaustive search and 
 
 Trying to make harder, more complex problems and reduce it into a easier problem. Sometimes, you need to reduce a problem known to be difficult to the given problem, justifying heuristics and approximate solutions.
 
-Problem: Determine if one string is a rotation of the other one
-ie) "car" and "arc" are rotations of each other. Brute-force rotate every char in first string to match results in O(n^2). However reduce it into a string search problem. Concat the second string to itself and them search 1st string in the 2nd string. Find a match and they are rotations of each other. O(n^2) becomes O(n) problem.
+#### Problem: Determine if one string is a rotation of the other one
+
+>ie) "car" and "arc" are rotations of each other. Brute-force rotate every char in first string to match results in ```O(n^2)```. However reduce it into a string search problem. Concat the second string to itself and them search 1st string in the 2nd string. Find a match and they are rotations of each other. O(n^2) becomes O(n) problem.
 
 ### 5. Graph Modeling
 
 Drawing pictures are a great way to brainstorm for a potential solution. If the relationship can be represented by a graph, then quite often it can be reduced to a well-known graph problem.
 
-Problem: Want to determine if an arbitrage exists with a given set of currencies. Basically, you want to make the most money converting money around.
-ie) 1 USD -> 1 x 0.8123 = 0.8123 EUR -> 0.8123 x 1.2010 = CHF ... = 1.00385 USD
+#### Problem: Want to determine if an arbitrage exists with a given set of currencies. Basically, you want to make the most money converting money around.
+
+>ie) 1 USD -> 1 x 0.8123 = 0.8123 EUR -> 0.8123 x 1.2010 = CHF ... = 1.00385 USD
 
 This is a graph problem where G = (V, E)
     - V is the set of vertices; represents the currencies
@@ -138,25 +144,28 @@ Use Bellman-Ford algorithm
 
 Sorting can make certain problems easier to understand and solve when the input is sorted. However, it may not be clear at first what should be sorted.
 
-Sorting is not appropriate when <= O(n) algorithm is possible. Sometimes sorting can obsfuscate the problem.
+Sorting is not appropriate when ```<= O(n)``` algorithm is possible. Sometimes sorting can obsfuscate the problem.
 
 ### 2. Recursion
 
-Recursive function consists of base cases and calls to the same functino with different arguements
+Recursive function consists of base cases and calls to the same function with different arguements.
+
 Appropriate scenarios may include:
-    - Searching
-    - Enumeration
-    - Divide-And-Conquer
-    - Decomposing a complex problem into a set of similar smaller instances
+
+- Searching
+- Enumeration
+- Divide-And-Conquer
+- Decomposing a complex problem into a set of similar smaller instances
 
 ### 3. Divide-And-Conquer
 
 Decomposes a problem into 2 or more smaller independent subproblems until it gets to instances where they are simple enough to be solved directly. Afterwards the results are then combined all together.
 
-Q: How is this different from recursion?
-Divide-and-conquer is usually implemented with recursion however, recursion is more general and subproblems do not have to be the same form
+#### Q: How is this different from recursion?
 
-ie) 21 Triomino in a 8 x 8 Mboard with a top-left square piece gone. Subproblem with the top left square missing is different from others with a smaller n x n board.
+> Divide-and-conquer is usually implemented with recursion however, recursion is more general and subproblems do not have to be the same form
+
+> ie) 21 Triomino in a 8 x 8 Mboard with a top-left square piece gone. Subproblem with the top left square missing is different from others with a smaller n x n board.
 
 ### 4. Dynamic Programming
 
@@ -164,10 +173,11 @@ Dynamic Programming can be used when the problem has "optimal substructure: Poss
 A key aspect of DP is maintaining a cache of solutions to subinstances. Can be done recursively(stored in hash table or BST) or iteratively (one or multi-dimensional array). Typically DP
 problems are implemented by recursion but most of the time, iteration may be more efficient.
 
-ie) Fibonacci numbers can be solved typically 3 ways
-    i) Brute Force O(2^n)
-    ii) Recursion O(n)
-    iii) Bottom Up O(n) but does not overflow callback stack
+> ie) Fibonacci numbers can be solved typically 3 ways
+
+>1. Brute Force O(2<sup>n</sup>)
+>2. Recursion O(n)
+>3. Bottom Up O(n) but does not overflow callback stack
 
 ### 5. Greedy Algorithms
 
@@ -228,7 +238,7 @@ Time complexity does not tell us the exact number of times the code is ran but i
 If an algorithm contains multiple phases, subcomponents of algorithms, then the total time complexity becomes the largest time complexity of a single phase. This is because
 the slowest phase is usually the bottleneck of the code.
 
-As shown below, out of the three time complexities O(n), O(n^2) and O(n), O(n^2) is the slowest thus the total time complexity is O(n^2).
+As shown below, out of the three time complexities ```O(n), O(n^2) and O(n), O(n^2)``` is the slowest thus the total time complexity is ```O(n^2)```.
 
 ```javascript
 for (int i = 1; i <= n; i++) {

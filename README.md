@@ -57,9 +57,9 @@ There's so many resources and guides to this but essentially it boils down to th
         2. Advanced Javascript
             1. [Mozilla resource](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
             2. [Odin Project](https://www.theodinproject.com/dashboard)
-            3. [Javascript in 30 days](https://github.com/Asabeneh/30DaysOfJavaScript)
+            3. [Javascript in 30 days](https://github.com/Asabeneh/30DaysOfJavaScript) **(Preferred)**
     3. Learning React & Redux
-        1. React Official Docs[reactjs](https://reactjs.org/docs/introducing-jsx.html)
+        1. React Official Docs [reactjs](https://reactjs.org/docs/introducing-jsx.html)
         2. Better Explanation [react.express](http://www.react.express/)
     4. GatsbyJS is also a great way to learn react
 
@@ -100,10 +100,9 @@ Project ideas [reddit](https://github.com/tuvtran/project-based-learning#javascr
 
 ## Current Roadmap
 
-Deep Work - Set a cutoff time where you stop working **7pm is my cutoff**
-How many pomodoros do I place each day to do work? **12 is min.**
-Do the tasks you dread the most in the morning. (Usually ICBC issues, CRT & Lawyer, Editing Resume & Cover Letter)
-4/4/4 - Coding Problems/Learning/Projects
+1. Put in your 8 hours whether you have 2 pomodoros, 8 pomodoros or 16. Treat it like a full-time job. Does not if you are focused or getting things done. Just put in that 8 hours.
+2. Eat your frogs in the morning. Do your most dreaded or important tasks in the morning.
+3. Pray continuously about working knowing that you working for the Lord.
 
 ### Learning Roadmaps
 
@@ -135,7 +134,7 @@ Do the tasks you dread the most in the morning. (Usually ICBC issues, CRT & Lawy
     5. Learning React
         * [x] Learn ReactJS through [GatsbyJS](https://www.gatsbyjs.org/tutorial/part-four/)
         * [ ] All fundamental react js concepts [All fundamentals of React](https://www.freecodecamp.org/news/all-the-fundamental-react-js-concepts-jammed-into-this-single-medium-article-c83f9b53eac2/)
-        * [ ] Use these as reference[Official](https://reactjs.org/docs/introducing-jsx.html) & [Companion](http://www.react.express/modern_javascript)
+        * [ ] Use these as reference [Official](https://reactjs.org/docs/introducing-jsx.html) & [Companion](http://www.react.express/modern_javascript)
         * [ ] Good guide in steps in learning [react roadmap](https://www.freecodecamp.org/news/learning-react-roadmap-from-scratch-to-advanced-bff7735531b6/)
 
 3. Migrate Breeze to React
@@ -151,10 +150,12 @@ Do the tasks you dread the most in the morning. (Usually ICBC issues, CRT & Lawy
         * Search for prayer request for peoples needs and such
     2. Webnovel Platform - Centralized website where people can post web novels and viewers can read them, donate to authors and participate in chat
         * Read novels platform that is simple, easy to navigate and fast
-        * Authors can post novels and have people subscribe or donate to read and such
+        * Authors can post novels and have people subscribe or donate to read asnd such
         * Have account management and authentication
         * Have proper payment transaction security
     3. Another Idea
+
+
 
 ### (Optional) - Off time learning
 
