@@ -21,27 +21,6 @@ Cheatsheet on Javascript language, programming paradigms, tips&tricks, etc.
 	const max = new Person('max'); // Person's prototype does not change from Object or Function 
 	```
 
-## Prototypes
-All objects have a prototype. A prototype is the base class that the object accesses all its prototype's methods & properties.
-
-When defining functions for an object, it is better to do it on the ```prototype``` of that object. This is because defining the function in the constructor means that each time a new Object is created, the function gets duplicated.
-
-```javascript
-function Student(name) {
-  this.name = name
-  this.grade = grade
-}
-
-Student.prototype.sayName = function() {
-  console.log(this.name)
-}
-Student.prototype.goToProm = function() {
-  // eh.. go to prom?
-}
-```
-
-Theres a method to setting the prototype of an object ```Object.create```. It returns a new object with the specified prototypes and any additional properties you want to add.
-
 ## 1. What is Javascript
 Javascript is an interpreted language so it is interpreted line-by-line at run-time. Many browsers nowadays have Just-In-Time (JIT) compiliation which compiles Javascript into executable bytecode. This contrasts to compiled language such as C++, Java and Rust which must be compiled to machine code first before it's run.
 
@@ -61,22 +40,56 @@ However, with the advent of NodeJS, JS can be written on the server-side which m
 	<li> Talk to Servers
 </ol>
 
+### 2.1. Javascript Engine
+
+
+1. Parser
+2. Abstract Syntax Tree (AST)
+3. Intepreter
+4. Profiler
+5. Compiler
+6. Optimized Code
+ 
+[Source](https://blog.bitsrc.io/javascript-engines-an-overview-2162bffa1187#:~:text=A%20JavaScript%20engine%20is%20a,in%20C%20and%20C%2B%2B.)
+
+### 2.2. Chrome V8 Engine
+
+V8 introduced Ignition, new interpreter, that compiles Javascript functions to a short bytecode. The byecode is then excuted by a high-performance interpreter which produces execution speeds similar to v8 baseline compiler.
+
+Interpreter reads the code line-by-line and then translates it on the fly into machine code. Compiler on the other compiles the code into machine code ahead of time.
+
+#### 2.2.3. Just-In-Time Compilation
+
+There's a new part of the Javascript engine called a monitor/profiler. The profiler watches the code as it runs and records the times it runs and the types used. When a function starts getting warm (gets called often), the JIT sends it off to be compiled.
+
+There's two steps to compilation
+1. Baseline compiler
+2. Optimizing
+ 
+[Ignition Interpreter](https://v8.dev/blog/ignition-interpreter)
+[JIT](https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/)
+[V8 blog- lots of goodies](https://v8.dev/blog)
+
 ## 3. Front-End Frameworks
 Front-end frameworks such as React, Angular and Vue enable client-side code to be easier and maintainable. There are strengths and caveats to each of the frameworks depending on usecases, project complexity and size etc.
 
 ## 4. Javascript Data Types
 Javascript is a loosely typed or dynamic language. This means that variables are not directly declared it's typing compared to staticly typed languages such as C++. However, Typescript address this issues.
 
-Data Types are split into two categories: Primitives or single celled data types and Objects or a group of data. Primitives are immmutable so variables can only be reassigned data.
-Primitives include
-<ol>
-  <li> <strong>Boolean</strong> - true or false / 1 or 0
-  <li> <strong>Null</strong> - user-assigned data type that says data has no value
-  <li> <strong>Undefined</strong> - no datatype has been assigned to the variable or data is empty
-  <li> <strong>Number</strong> - JS has number type as float data-types. This includes +/- infinity and NaN. BigInt can represent intergers beyond the safe integer limit for Nubmers with arbitrary preision. 
-  <li> <strong>String</strong> - sequence of characters with indices
-  <li> <strong>Symbol</strong> - unique and immutable primitive type and can be used as a key for an Object
-</ol>
+Data Types are split into two categories: **Primitives** or single celled data types and **Objects** or a group of data.
+
+Note: Primitives are immmutable so variables can only be reassigned data.
+
+### 4.1. Primitives
+1. **Boolean** - true or false / 1 or 0
+2. **Null** - user-assigned data type that says data has no value
+3. **Undefined** - no datatype has been assigned to the variable or data is empty
+4. **Number** - JS has number type as float data-types. This includes +/- infinity and NaN. BigInt can represent intergers beyond the safe integer limit for Nubmers with arbitrary preision. 
+5. **String** - sequence of characters with indices
+6. **Symbol** - unique and immutable primitive type and can be used as a key for an Object
+
+### 4.2. Objects 
+
 Objects include Arrays and Objects or commonly known as Hash Tables. 
 Arrays are instatiated using [] and Objects are declared using {}.
 Each array value has an index and a value. Each object has a key and a value.
@@ -92,7 +105,7 @@ const j = 12345; // Used to declare a variable and assign a value once. Cannot r
 let k = []; // Declare a variable with reassignable values.
 ```
 
-### 4.1 Array Methods
+### 4.3 Array Methods
 
 Javascript has a couple array methods that can alter the elements of an array.
 
@@ -102,160 +115,95 @@ Javascript has a couple array methods that can alter the elements of an array.
 4. ```unshift()``` - Add an item to the beginning of an array
 
 
-## 5. Advanced Javascript
+### 4.4 String Methods
 
+### 4.5 Objects Methods
 
+### 4.6 Type Coercion
 
-### 5.1. Promises vs Async/Await
-Promise is an object that is a placeholder for the resulting value of an asynchronous operation. A promise is in one of these states:
-<ul>
-  <li> Pending: initial state neither fulfilled or rejected
-  <li> Fulfilled: operation completed successfully
-  <li> Rejected: meaning that the operation failed
-</ul>
-To understand Async/Await better you must understand <a href="https://medium.com/@bluepnume/learn-about-promises-before-you-start-using-async-await-eb148164a9c8"> promises.</a>
-The reason you want to want to use Async/Await instead of Promises is to avoid
-<a href="https://getstream.io/blog/javascript-promises-and-why-async-await-wins-the-battle/#callback-hell">Callback-hell.</a>
+Javascript variables can be converted into a different type through different ways
 
+1. Explicity (```'1234'.toString()```)
+2. Or, implicitly (```42 + '' //returns "42"```)
+
+String conversion
 ```javascript
-function getUsers(userId) {
-	axios
-		.get(`/users/userId=${users[0]}`)
-		.then(res => {
-			// save the response for user 1
-			response.push(res);
-
-			axios
-				.get(`/users/userId=${users[1]}`)
-				.then(res => {
-					// save the response for user 2
-					response.push(res);
-
-					axios
-						.get(`/users/userId=${users[2]}`)
-						.then(res => {
-							// save the response for user 3
-							response.push(2);
-
-							axios
-								.get(`/users/userId=${users[3]}`)
-								.then(res => {
-									// save the response for user 4
-									response.push(res);
-								})
-								.catch(err => {
-									// handle error
-									console.log(err);
-								});
-						})
-						.catch(err => {
-							// handle error
-							console.log(err);
-						});
-				})
-				.catch(err => {
-					// handle error
-					console.log(err);
-				});
-		})
-		.catch(err => {
-			// handle error
-			console.log(err);
-		});
-}
+String(value) // function converts the value into a string
+let value = true;
+value = String(value); //value = 'true'
 ```
 
-Instead you can use 
-<a href='https://blog.logrocket.com/promise-chaining-is-dead-long-live-async-await-445897870abc/'>Async/Await</a>.
- Code is simplified and reduced significantly. Also there is no need to chain promises to make infinite callback loops.
-
+Number conversion
 ```javascript
-async function getUsers(users) {
-	try {
-		response[0] = await axios.get(`/users/userId=${users[0]}`);
-		response[1] = await axios.get(`/users/userId=${users[1]}`);
-		response[2] = await axios.get(`/users/userId=${users[2]}`);
-		response[3] = await axios.get(`/users/userId=${users[3]}`);
-	} catch (err) {
-		console.log(err);
-	}
-}
+Number(value); // function converts the value into a number
+"6"/"2"; // 3, strings are converted into numbers
+4 + "4" // "44" careful b/c JS treats as two string concatentate
+Number("This is a string"); // Returns a NaN
 ```
-Await must be used within functions that are declared with async in front. ie)
 
+Boolean Conversion
 ```javascript
-async function makeCoffee() {
-    try {
-    	let cupOfMojo = await promiseToMakeCoffee;
-    } catch(err) {
-    	console.log('Let me sleep more Zzzzz');
-    }
-  }
-  
-  let result = await promiseToMakeCoffee;
-  console.log(result);
-}
+Boolean(value); // function converts value into boolean
+Boolean(1); // returns true
+Boolean("hello") // returns true
+Boolean("") // returns false
+Boolean("0") && Boolean(" ") // returns true
 ```
-However, if you don't have to wait for your responses sequentially you can wrap all your await statements in a Promise.all() function. The whole point of the event
-loop is to avoid blocking code.
-```javascript
-async function getUsers(users) {
-	try {
-		user0 = axios.get(`/users/userId=${users[0]}`);
-		user1 = axios.get(`/users/userId=${users[1]}`);
-		user2 = axios.get(`/users/userId=${users[2]}`);
-		user3 = axios.get(`/users/userId=${users[3]}`);
 
-		response = await Promise.all([user0, user1, user2, user3]);
-	} catch (err) {
-		console.log(err);
-	}
-}
-```
-<ol>
-  <li> Async/Await reduces the amount of code and cleans it up without complicated, nested promises
-  <li> Can use error handling with try/catch instead of in each promise
-  <li> Error stacks shows exact place instead of ambiguous errors in Promises loops
-  <li> Avoid Callback-hell (Not fun :sob: )
-</ol>
+#### 4.7 Strict Mode
+
+Javascript Strict Mode is a restricted variant of Javascript where 
+
+1. Catches common coding errors, throwing exception
+2. Prevents "unsafe errors" such as gaining access to the global object (throws exception)
+3. Disables confusing or poor thought-out features
+
+Notable Features:
+1. Disallows global variables (catches missing ```var``` declarations or typos)
+2. Silent failing assignments throw errors (assigning ```NaN = 5;```)
+3. Throws exception when attempting to delete undeletable properties (```delete Object.prototype```)
+
+[MDN explanation of Strict Mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)
+[Another explanation of strict mode](https://johnresig.com/blog/ecmascript-5-strict-mode-json-and-more/)
+
+## 5. Functions
 
 ### 5.2. Scope vs Context
-Scope refers to the visibility of the variables while context refers to the object to which a function belongs.
-http://ryanmorr.com/understanding-scope-and-context-in-javascript/
+Scope refers to the visibility of the variables while context refers to the object to which a function belongs.[1](http://ryanmorr.com/understanding-scope-and-context-in-javascript/)
 
-<dl>
-	<dt>Scope</dt>
-	<dd>Scope pertains to the variable access of a function when it is invoked and is unique to each
-	invocation.</dd>
-	<dd>Var is function scoped and let is block scoped which is denoted by the enclosing block {}.</dd>
-	<dt>Context</dt>
-	<dd>Is always the value of ```this``` keyword which is a reference to the object
-	that "owns" the currently executing code.</dd>
-	<dd>Using 'this' keyword refers to the object that the function is executing in.</dd>
-</dl>
+#### Scope
+1. Scope pertains to the variable access of a function when it is invoked and is unique to each invocation.
+2. Var is function scoped and let is block scoped which is denoted by the enclosing block {}.
+
+#### Context
+1. Is always the value of ```this``` keyword which is a reference to the object that "owns" the currently executing code.
+2. Using 'this' keyword refers to the object that the function is executing in.
 
 ```javascript
-	var shop = {
+var shop = {
 	fruit: "Apple",
 	sellMe: function() {
 		console.log("this ", this.fruit);
-	// => this Apple
+	// prints: this Apple
 		console.log("shop ", shop.fruit);
-	// => shop Apple
+	// prints: shop Apple
 	}
 }
 
 shop.sellMe()
 ```
 
-Window Scope : if you declare a and b on your browser then you will see the a and b in your window
-Global Scope: variables declared in the global scope can be accessed anywhere in the file
-	- global to the file or global relative to some block of code (block scope)
-Local Scope: Local scope means it can be accessed only in a certain block of code
+#### Window Scope
+1. If you declare a and b on your browser then you will see the a and b in your window
 
+#### Global Scope
+1. variables declared in the global scope can be accessed anywhere in the file
+2. global to the file or global relative to some block of code (block scope)
 
+#### Local Scope
+1. Local scope means it can be accessed only in a certain block of code
 
-https://medium.com/dev-bits/a-perfect-guide-for-cracking-a-javascript-interview-a-developers-perspective-23a5c0fa4d0d
+[Source](https://medium.com/dev-bits/a-perfect-guide-for-cracking-a-javascript-interview-a-developers-perspective-23a5c0fa4d0d)
 There are three types of scopes in ES6.
 <ul>
 	<li>Global scope: Variables declared in the global scope can be accessed by all functions.</li>
@@ -310,60 +258,6 @@ import { smth as Smth } from '.utility.js';
 // Can import all functions/object into one object
 import * as bundled from 'utility.js';
 ```
-
-### Classes & Inheritance
-Classes are prototypical inheritance model that you call to create an object of a certian blueprint. This is comparable to classes in other programmming languages such as C.
-
-```javascript
-class Human {
-	constructor() {
-		this.gender = "male";
-	}
-
-	printGender() {
-		console.log(this.gender);
-	}
-}
-
-class Person extends Human {
-	constructor() {
-		super(); // Super allows your derived class to use the properties/methods of the inherited class
-		this.name = "max";
-		this.gender = "female";
-	}
-
-	printName() {
-		console.log(this.gender);
-	}
-}
-```
-
-### Spread & Rest Operators
-```...``` can be used as a spread or a rest operator.
-<dl>
-	<dt>Spread</dt>
-	<dd>Used to split up array elements or Object properties</dd>
-	<dd>Pulls out the elements out of the array or key pairs out of objects</dd>
-</dl>	
-
-```javascript
-const newArray = [...oldArray, 1, 2];
-const newObject = {..oldObject, newProp:5};
-```
-
-<dl>
-	<dt>Rest</dt>
-	<dd>Used to merge a list of function arguments into an array</dd>
-</dl>
-
-```javascript
-function sortArgs(...args) {
-	return args.sort();
-}
-```
-
-### Destructuring
-
 
 
 ### Higher Order Functions
@@ -426,25 +320,122 @@ Callback function Methods
 * findIndex: Return index of first element that meets condition
 * some: Check if one or more elements meet the condition
 * sort: Modifies the original array and sorts it by ascending or descending order
-  * Note: sort() for numbers sorts it as strings not numbers. Refer to fix below
+* Note: sort() for numbers sorts it as strings not numbers. Refer to fix below
 
 ```javascript
 const numbers = [9.81, 3.14, 100, 37]
 console.log(numbers.sort()) //[100, 3.14, 37, 9.81]
-numbers.sort(function(a, b) {
-  return a - b
-})
+numbers.sort((a, b) => a - b);
 
 console.log(numbers) // [3.14, 9.81, 37, 100]
 
 numbers.sort(function(a, b) {
   return b - a
 })
+
+console.log(numbers) // [100, 37, 9.81, 3.14]
 ```
 
-### Sets & Maps
+### [Function Declaration vs Expression](https://medium.com/@mandeep1012/function-declarations-vs-function-expressions-b43646042052)
 
-#### Sets
+Function declaration means that the function is "saved for later use" while function expressions
+are executed when the interpreter reaches that line of code.
+
+```javascript
+// Function Expression
+console.log(foo()); // ERROR foo wasn't loaded
+const foo = function { return 'foo'; }
+
+// Function Declaration
+console.log(boo()) // Prints 'boo' onto console
+const function boo() { return 'boo'; }
+```
+
+Function declarations are hoisted to the top of the code while function expressions are not.
+Benefits of using function expressions are:
+
+1. Closures
+2. Arguments to other functions
+3. IIFE
+
+NOTE: Arrow functions are similar to function expressions so they are not hoisted.
+
+### [IIFE](https://flaviocopes.com/javascript-iife/)
+
+Immediately invoked function expressions are immediately called when they are defined. 
+
+```javascript
+(/* function declaraction - function declaration or arrow function */) ();
+(() => {
+	/* Arrow function for anonymous function */
+})())
+
+
+// IIFE can be named but they do not leak out to the global scope
+(function doSomething() {
+	/* Function is doing something */
+})())
+
+```
+
+Benefits of using IIFE
+
+1. Avoid polluting global object
+2. Isolate variables declaration
+
+## 6. Inheritance Model
+
+### 6.1. Prototypes
+All objects have a prototype. A prototype is the base class that the object accesses all its prototype's methods & properties.
+
+When defining functions for an object, it is better to do it on the ```prototype``` of that object. This is because defining the function in the constructor means that each time a new Object is created, the function gets duplicated.
+
+```javascript
+function Student(name) {
+  this.name = name
+  this.grade = grade
+}
+
+Student.prototype.sayName = function() {
+  console.log(this.name)
+}
+Student.prototype.goToProm = function() {
+  // eh.. go to prom?
+}
+```
+
+### 6.2. Classes & Inheritance
+Classes are prototypical inheritance model that you call to create an object of a certian blueprint. This is comparable to classes in other programmming languages such as C.
+
+```javascript
+class Human {
+	constructor() {
+		this.gender = "male";
+	}
+
+	printGender() {
+		console.log(this.gender);
+	}
+}
+
+class Person extends Human {
+	constructor() {
+		super(); // Super allows your derived class to use the properties/methods of the inherited class
+		this.name = "max";
+		this.gender = "female";
+	}
+
+	printName() {
+		console.log(this.gender);
+	}
+}
+```
+
+Theres a method to setting the prototype of an object ```Object.create```. It returns a new object with the specified prototypes and any additional properties you want to add.
+
+## 8. Other Javascript Concepts
+
+### 8.1. Sets
 
 Set is a collection of elements. Compared to arrays, a set can only contain unique elements.
 
@@ -493,54 +484,127 @@ let C = new Set(c) // Set(2) {1, 2}
 
 ```
 
-#### Maps
+### 8.2. Maps
 
+### 8.3. Spread & Rest Operators
+```...``` can be used as a spread or a rest operator.
 
-
-
-### [Function Declaration vs Expression](https://medium.com/@mandeep1012/function-declarations-vs-function-expressions-b43646042052)
-
-Function declaration means that the function is "saved for later use" while function expressions
-are executed when the interpreter reaches that line of code.
-
-```javascript
-// Function Expression
-console.log(foo()); // ERROR foo wasn't loaded
-const foo = function { return 'foo'; }
-
-// Function Declaration
-console.log(boo()) // Prints 'boo' onto console
-const function boo() { return 'boo'; }
-```
-
-Function declarations are hoisted to the top of the code while function expressions are not.
-Benefits of using function expressions are:
-
-1. Closures
-2. Arguments to other functions
-3. IIFE
-
-NOTE: Arrow functions are similar to function expressions so they are not hoisted.
-
-### [IIFE](https://flaviocopes.com/javascript-iife/)
-
-Immediately invoked function expressions are immediately called when they are defined. 
+<dl>
+	<dt>Spread</dt>
+	<dd>Used to split up array elements or Object properties</dd>
+	<dd>Pulls out the elements out of the array or key pairs out of objects</dd>
+</dl>	
 
 ```javascript
-(/* function declaraction - function declaration or arrow function */) ();
-(() => {
-	/* Arrow function for anonymous function */
-})())
-
-
-// IIFE can be named but they do not leak out to the global scope
-(function doSomething() {
-	/* Function is doing something */
-})())
-
+const newArray = [...oldArray, 1, 2];
+const newObject = {..oldObject, newProp:5};
 ```
 
-Benefits of using IIFE
+<dl>
+	<dt>Rest</dt>
+	<dd>Used to merge a list of function arguments into an array</dd>
+</dl>
 
-1. Avoid polluting global object
-2. Isolate variables declaration
+```javascript
+function sortArgs(...args) {
+	return args.sort();
+}
+```
+
+### 8.4 Destructuring
+
+
+
+## 9. Aynchronous Javascript
+
+### 9.1. Promises vs Async/Await
+Promise is an object that is a placeholder for the resulting value of an asynchronous operation. A promise is in one of these states:
+
+1. Pending: initial state neither fulfilled or rejected
+2. Fulfilled: operation completed successfully
+3. Rejected: meaning that the operation failed
+
+To understand Async/Await better you must understand [promises.](https://medium.com/@bluepnume/learn-about-promises-before-you-start-using-async-await-eb148164a9c8)
+The reason you want to want to use Async/Await instead of Promises is to avoid [Callback-hell](https://getstream.io/blog/javascript-promises-and-why-async-await-wins-the-battle/#callback-hell)
+
+```javascript
+function getUsers(userId) {
+	axios
+		.get(`/users/userId=${users[0]}`)
+		.then(res => {
+			// save the response for user 1
+			response.push(res);
+
+			axios
+				.get(`/users/userId=${users[1]}`)
+				.then(res => {
+					// save the response for user 2
+					response.push(res);
+
+					axios
+						.get(`/users/userId=${users[2]}`)
+						.then(res => {
+							// save the response for user 3
+							response.push(2);
+
+							axios
+								.get(`/users/userId=${users[3]}`)
+								.then(res => {
+									// save the response for user 4
+									response.push(res);
+								})
+								.catch(err => {
+									// handle error
+									console.log(err);
+								});
+						})
+						.catch(err => {
+							// handle error
+							console.log(err);
+						});
+				})
+					console.log(err);
+				});
+		})
+		.catch(err => {
+			// handle error
+			console.log(err);
+		});
+}
+```
+
+Instead you can use [Async/Await](https://blog.logrocket.com/promise-chaining-is-dead-long-live-async-await-445897870abc/)
+
+Code is simplified and reduced significantly. Also there is no need to chain promises to make infinite callback loops.
+
+```javascript
+async function getUsers(users) {
+	try {
+		response[0] = await axios.get(`/users/userId=${users[0]}`);
+		response[1] = await axios.get(`/users/userId=${users[1]}`);
+		response[2] = await axios.get(`/users/userId=${users[2]}`);
+		response[3] = await axios.get(`/users/userId=${users[3]}`);
+	} catch (err) {
+		console.log(err);
+	}
+}
+```
+
+Await must be used within functions that are declared with async in front. ie)
+
+```javascript
+async function makeCoffee() {
+    try {
+    	let cupOfMojo = await promiseToMakeCoffee;
+    } catch(err) {
+    	console.log('Let me sleep more Zzzzz');
+    }
+}
+```
+
+<ol>
+  <li> Async/Await reduces the amount of code and cleans it up without complicated, nested promises
+  <li> Can use error handling with try/catch instead of in each promise
+  <li> Error stacks shows exact place instead of ambiguous errors in Promises loops
+  <li> Avoid Callback-hell (Not fun :sob: )
+</ol>
